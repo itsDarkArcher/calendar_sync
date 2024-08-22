@@ -4,6 +4,7 @@
 /extensions/__pycache__
 /extensions/__init__.py
 /extensions/access.py
+/extensions/upload_id.py
 
 
 # ignorar archivos json
