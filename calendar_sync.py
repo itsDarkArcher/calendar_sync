@@ -43,7 +43,6 @@ def create_event(event_data, service):
     else:
         print(f'Error: Evento {name} no tiene fecha.')
 
-
 def update_event(event_data, service, event_id):
     name = event_data.get('name')
     start_date = event_data.get('start_date')
