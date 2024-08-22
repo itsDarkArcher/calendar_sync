@@ -1,7 +1,7 @@
 import requests 
 
 def add_id_to_notion(page_id, event_id):
-    token = "secret_1LOGeztltAZCfQH9DRrYZORsE8JltGNjSUdCMxGLjvy"
+    token = ""
     # Extraer la ID de la pagina de la url
     page_id = page_id.replace("-","")
     
