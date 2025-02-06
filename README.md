@@ -73,13 +73,13 @@ This guide will help you set up the Calendar Sync project to synchronize your ta
 
 1. **Ensure your credentials file is correctly set up:**
    - Your `credentials.json` file should contain your Google API credentials.
-   - Create a `notiondb.json` file with the following content:
+   - Create a `access.json` file with the following content:
    ```json
    {
      "token": "<Your Notion Integration Token>",
      "database_id": "<Your Notion Database ID>"
+    "email":"mauri.duarte.24@gmail.com"
    }
-   
    ```
 
 2. **Run the synchronization script:**
