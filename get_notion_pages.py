@@ -3,7 +3,7 @@ from extensions.access import get_notion_db
 
 def get_notion_pages():
     # Load the database ID from the JSON file
-    with open('creds/notiondb.json', 'r') as config_file:
+    with open('creds/access.json', 'r') as config_file:
         config = json.load(config_file)
         database_id = config.get('database_id', '')
     # Obteining the pages from the database to filter

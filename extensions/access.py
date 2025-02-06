@@ -4,10 +4,11 @@ import requests
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from google.auth.exceptions import RefreshError
 from googleapiclient.discovery import build
 
 # Load token from the JSON file
-with open('notiondb.json', 'r') as config_file:
+with open('creds/access.json', 'r') as config_file:
     config = json.load(config_file)
     NOTION_TOKEN = config.get('token', '')
 NOTION_HEADERS = {
@@ -18,23 +19,31 @@ NOTION_HEADERS = {
 
 # Configuración de Google Calendar API
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
-SERVICE_ACCOUNT_FILE = 'credentials.json'
-
+SERVICE_ACCOUNT_FILE = 'creds/credentials.json'
 def get_calendar_service():
     """
     Autentica y devuelve el servicio de Google Calendar.
     """
     creds = None
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    token_path = 'creds/token.json'
+    if os.path.exists(token_path):
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
+            try:
+                creds.refresh(Request())
+            except RefreshError:
+                # Delete the token file and re-authenticate
+                os.remove(token_path)
+                flow = InstalledAppFlow.from_client_secrets_file(SERVICE_ACCOUNT_FILE, SCOPES)
+                creds = flow.run_local_server(port=0)
+                with open(token_path, 'w') as token:
+                    token.write(creds.to_json())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(SERVICE_ACCOUNT_FILE, SCOPES)
             creds = flow.run_local_server(port=0)
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
+            with open(token_path, 'w') as token:
+                token.write(creds.to_json())
 
     service = build('calendar', 'v3', credentials=creds)
     return service

@@ -3,7 +3,7 @@ import requests
 
 def add_id_to_notion(page_id, event_id):
     # Load token from the JSON file
-    with open('notiondb.json', 'r') as config_file:
+    with open('creds/access.json', 'r') as config_file:
         config = json.load(config_file)
         token = config.get('token', '')
     # Extraer la ID de la pagina de la url

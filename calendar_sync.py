@@ -7,7 +7,7 @@ from extensions.upload_id import add_id_to_notion
 service = get_calendar_service()
 
 # Load the calendar ID from the credentials JSON file
-with open('creds/credentials.json', 'r') as config_file:
+with open('creds/access.json', 'r') as config_file:
     config = json.load(config_file)
     calendarId = config.get('email', '')
 
@@ -91,9 +91,12 @@ def update_event(event_data, service, event_id):
     
     try:
         # Retrieve the existing event from Google Calendar
-        event = service.events().get(calendarId, eventId=event_id).execute()
+        event = service.events().get(calendarId=calendarId, eventId=event_id).execute()
     except Exception as e:
-        print(f'Error retrieving event: {e}')
+        # If the event is not found, create a new event
+        if 'Not Found' in str(e):
+            print(f'Event not found in Google Calendar, creating a new event for {name}')
+            create_event(event_data, service)
         return
     
     # Update the event's summary (name)
@@ -118,7 +121,7 @@ def update_event(event_data, service, event_id):
         
         try:
             # Update the event in Google Calendar
-            event_update = service.events().update(calendarId, eventId=event_id, body=event).execute()
+            event_update = service.events().update(calendarId=calendarId, eventId=event_id, body=event).execute()
             event_id = event_update.get('id')
             print(f'Event updated: {name}\n URL: {event_update.get("htmlLink")}\n ID: {event_id}.')
         except Exception as e:
