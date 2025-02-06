@@ -76,9 +76,9 @@ This guide will help you set up the Calendar Sync project to synchronize your ta
    - Create a `access.json` file with the following content:
    ```json
    {
-     "token": "<Your Notion Integration Token>",
-     "database_id": "<Your Notion Database ID>"
-    "email":"mauri.duarte.24@gmail.com"
+      "token": "<Your Notion Integration Token>",
+      "database_id": "<Your Notion Database ID>",
+      "email":"mauri.duarte.24@gmail.com"
    }
    ```
 
