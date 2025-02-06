@@ -1,8 +1,12 @@
+import json
 from extensions.access import get_notion_db
 
 def get_notion_pages():
-    # Obteining the pages from the database to filter
-    database_id= '46f5ce65247e4479b8c44957fdf9eda1'
+    # Load the database ID from the JSON file
+    with open('config.json', 'r') as config_file:
+        config = json.load(config_file)
+        database_id = config.get('database_id', '')
+
     database = get_notion_db(database_id)        
     pages = []
     
