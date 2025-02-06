@@ -71,10 +71,15 @@ This guide will help you set up the Calendar Sync project to synchronize your ta
 
 ## Running the Synchronization Script
 
-1. **Set up environment variables:**
-   - Create a `.env` file in the project directory and add the following:
-     ```env
-     NOTION_TOKEN=<Your Notion Integration Token>
+1. **Ensure your credentials file is correctly set up:**
+   - Your `credentials.json` file should contain your Google API credentials.
+   - Create a `notiondb.json` file with the following content:
+   ```json
+   {
+     "token": "<Your Notion Integration Token>",
+     "database_id": "<Your Notion Database ID>"
+   }
+   ```
      ```
 
 2. **Run the synchronization script:**
@@ -83,14 +88,8 @@ This guide will help you set up the Calendar Sync project to synchronize your ta
     ```
 
 ## Troubleshooting
-
 - Ensure that your Google and Notion credentials are correctly configured.
 - Check the console output for any error messages and follow the instructions to resolve them.
-
-2. **Run the synchronization script:**
-    ```sh
-    python sync.py
-    ```
 
 ## Contributing
 Feel free to submit issues, fork the repository, and send pull requests. We appreciate all contributions.
