@@ -6,7 +6,7 @@ def get_notion_pages():
     with open('config.json', 'r') as config_file:
         config = json.load(config_file)
         database_id = config.get('database_id', '')
-
+    # Obteining the pages from the database to filter
     database = get_notion_db(database_id)        
     pages = []
     
