@@ -1,7 +1,7 @@
 # ignorar access, credentials y cualquier commit que pueda subir info sensible
 
 /__pycache__
-/extensions/
+/extensions/__pychache__
 /creds/
 
 
