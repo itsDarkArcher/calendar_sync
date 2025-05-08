@@ -78,7 +78,7 @@ This guide will help you set up the Calendar Sync project to synchronize your ta
    {
       "token": "<Your Notion Integration Token>",
       "database_id": "<Your Notion Database ID>",
-      "email":"mauri.duarte.24@gmail.com"
+      "email":"example@example.com"
    }
    ```
 
