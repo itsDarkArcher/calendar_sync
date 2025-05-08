@@ -8,12 +8,6 @@ This project synchronizes all your tasks from Notion to your Google Calendar.
 - Automatically update calendar events when tasks are modified
 - Supports recurring tasks
 
-## Usage
-
-1. **Set up your Notion and Google API keys:**  # Setup Guide for Calendar Sync
-
-This guide will help you set up the Calendar Sync project to synchronize your tasks from Notion to Google Calendar.
-
 ## Prerequisites
 
 - Python 3.x installed
